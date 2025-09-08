@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LaTeX and Code Example</title>
+    <title>LSTM From Scratch by Shalaka and Kaustubh</title>
 
     <!-- MathJax for LaTeX rendering -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -34,19 +34,98 @@
 </head>
 <body>
 
-    <h1>LaTeX and Python Code Example</h1>
+    <h1>Understanding LSTM from scratch</h1>
+    <p style="text-align: right;"><em>by Shalaka and Kaustubh</em></p>
 
+
+    <!-- <h2>Introduction</h2>
+        Deep Learning is an active field where research is flourishing increasingly especially in Natural Language Processing (NLP).
+        Events such as discovery of backpropagation and Neural Networks made it possible to observe great results in various domains such
+        as Image Classification. Recurrent Neural Networks (RNNs) evolved with the need of sequence processing and eventually became
+        quite popular in NLP tasks. To improve RNNs, LSTM and GRU evolved followed by the transformed architecture that lead to
+        boom in NLP area. In this article, we will be discussing about LSTM with the significant changes it made to RNN architecture
+        and its forward pass and backward passes using backpropagation in time from scratch.
+        
+    <h3>Motivation</h3>
+        RNNs were performing quite well in sequence processing tasks. However, it was observed that RNNs suffer with a serious 
+        problem known as "vanishing/exploding" gradients in which case it hampers
+        the learning. It was also observed that RNNs keep every bit of previous information stored in their hidden state i.e., 
+        an RNN can be said to be aware
+        of the first word of a sentence till the previous word while processing the current word (aware of it, of course through input).
+        It does seem to be nice, but it is concerning when we scenarios such as the following:
+        <br>
+        Suppose we have a sentiment classifier built using RNN and we have a review such as "The movie was long, but the acting was really nice.". In this
+        case we expect that as the review is positive and the first part of it with word as 'long' should be neglected as the more relevant is 'nice' word.
+        To forget some of the not much relevant words is not handled by RNNs. This motivated the development of LSTMs where we expect that
+        some of the irrelevant parts such as 'stop words' like 'a', 'an', 'the', 'and', etc. should be ignored for tasks such as sentiment classification,etc.
+        whereas other relevant parts should be give approprriate weightage to improve the prediction accuracy. Hence, there is a need of forgetting some information
+        while remembering the relevant information. LSTM's need can be given with the following example: We usually forget the food we took a week before
+        but some of the important events that have happened in our life, we still remember them because we consider them to be relevant. Similarly,
+        in a sentence or sequence, some of the parts that can be in beginning may be relevant while other in the middle may not be that relevant hence it will be expected
+        to forget them while some near parts may useful then, the model need to remember it. This gave rise to the formulation of 'Long Short Term Memory' i.e. LSTMs. -->
+
+    <h2>Introduction</h2>
+        <p>
+            <strong>Deep Learning</strong> is an active field where research is flourishing, especially in <strong>Natural Language Processing (NLP)</strong>. 
+            Events such as the discovery of <strong>backpropagation</strong> and <strong>Neural Networks</strong> have made it possible to achieve remarkable results in various domains, 
+            such as <em>Image Classification</em>. <strong>Recurrent Neural Networks (RNNs)</strong> evolved to address the need for sequence processing and eventually became quite popular in NLP tasks.
+            To enhance RNNs, architectures like <strong>Long Short-Term Memory (LSTM)</strong> and <strong>Gated Recurrent Unit (GRU)</strong> were developed. These were followed by transformer architectures, 
+            which led to a significant boom in the NLP domain.
+        </p>
+        <p>
+            In this article, we will discuss <strong>LSTM</strong>, the significant improvements it brought to RNN architecture, and its <em>forward</em> and <em>backward passes</em> using 
+            <em>backpropagation through time (BPTT)</em>, explained from scratch.
+        </p>
+
+        <h3>Motivation</h3>
+        <p>
+            RNNs perform reasonably well in sequence-processing tasks. However, it was observed that they suffer from a serious problem known as the <em>"vanishing/exploding gradients"</em> problem, 
+            which hampers learning. Additionally, RNNs retain every bit of previous information stored in their hidden state. In other words, an RNN is aware of all the past words in a sequence—right from the first word to the one just before the current word being processed.
+        </p>
+        <p>
+            While this ability seems beneficial, it becomes a concern in scenarios like the following:<br>
+            Suppose we have a sentiment classifier built using an RNN, and we encounter a review like: 
+            <em>"The movie was long, but the acting was really nice."</em> 
+            In this case, we expect that although the first part mentions the movie being "long", it should be neglected since the more relevant sentiment comes from "nice". 
+            RNNs, however, are unable to forget irrelevant information, such as unnecessary words or phrases, during training.
+        </p>
+        <p>
+            This limitation motivated the development of <strong>LSTMs</strong>. We expect that irrelevant words, such as <em>stop words</em> like "a", "an", "the", "and", etc., should be ignored for tasks like sentiment classification, while other relevant parts should be given appropriate weight to improve prediction accuracy. Hence, a mechanism to <u>forget some information while remembering the relevant parts</u> was necessary.
+        </p>
+        <p>
+            The need for forgetting irrelevant parts can be explained with an analogy: we usually forget the food we ate a week ago, but we still remember important life events because they are considered relevant. Similarly, in a sentence or sequence, some early parts may be important, while others in the middle may not be as relevant. The model should be able to selectively forget unimportant information and retain useful parts.
+        </p>
+        <p>
+            This gave rise to the formulation of <strong><u>Long Short-Term Memory (LSTM)</u></strong>, a powerful model that can selectively forget and remember information based on its relevance.
+        </p>
     <!-- Section for LaTeX -->
+    
+
+
+    <h2>Long Short Term Memory</h2>
+
+
+
+    <h3>Forward Pass</h3>
+
     <div class="latex">
+        
         <p>Here is an example formula using LaTeX:</p>
         <p>
             $$ H \mathbf{r} = \mathbf{b} $$
         </p>
     </div>
-
     <!-- Section for Python code -->
     <div>
-        <h2>Python Code from <code>code1.py</code></h2>
+        <h3>Python code for forward pass<code>code1.py</code></h3>
+        <pre><code id="codeBlock" class="python">Loading code...</code></pre>
+    </div>
+
+    
+    <h3>Backward Pass</h3>
+
+    <div>
+        <h3>Python code for forward pass<code>code1.py</code></h3>
         <pre><code id="codeBlock" class="python">Loading code...</code></pre>
     </div>
 
