@@ -1,5 +1,77 @@
-<html>
-  <body>
-    <h2>Hello World</h2>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LaTeX and Code Example</title>
+
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- highlight.js for code highlighting -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f4f4f4;
+        }
+        pre {
+            padding: 1rem;
+            background-color: #2d2d2d;
+            color: #ccc;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .latex {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>LaTeX and Python Code Example</h1>
+
+    <!-- Section for LaTeX -->
+    <div class="latex">
+        <p>Here is an example formula using LaTeX:</p>
+        <p>
+            $$ H \mathbf{r} = \mathbf{b} $$
+        </p>
+    </div>
+
+    <!-- Section for Python code -->
+    <div>
+        <h2>Python Code from <code>code1.py</code></h2>
+        <pre><code id="codeBlock" class="python">Loading code...</code></pre>
+    </div>
+
+    <script>
+        // Initialize highlight.js
+        hljs.highlightAll();
+
+        // Load Python file content into the code block
+        fetch('code1.py')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load code file.');
+                }
+                return response.text();
+            })
+            .then(code => {
+                const codeElement = document.getElementById('codeBlock');
+                codeElement.textContent = code;
+                hljs.highlightElement(codeElement);
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById('codeBlock').textContent = "Error loading code.";
+            });
+    </script>
+
+</body>
 </html>
